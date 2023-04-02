@@ -1,5 +1,5 @@
 # Spring-todo-rest-api
-Spring RESTful todo api on java
+Spring RESTful todo api with Java Spring Framework
 
 ### Endpoints
 
