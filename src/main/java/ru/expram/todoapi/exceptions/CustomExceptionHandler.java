@@ -1,5 +1,6 @@
 package ru.expram.todoapi.exceptions;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,7 +14,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(TaskNotFoundException.class)
     public final ResponseEntity resolveException(TaskNotFoundException exception) {
-        return Response.notFound(exception.getMessage());
+        return new Response<>().setError(exception.getMessage()).setStatus(HttpStatus.NOT_FOUND).build();
     }
 
 }

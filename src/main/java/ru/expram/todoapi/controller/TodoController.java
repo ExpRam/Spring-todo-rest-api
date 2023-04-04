@@ -13,32 +13,31 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/todo")
 public class TodoController {
-
     @Autowired
     private TodoService todoService;
 
     @GetMapping("/find")
     public ResponseEntity<List<TodoDto>> getAllTasksByTask(@RequestParam String task) {
-        return Response.ok(todoService.getAllTasksByTask(task));
+        return new Response<List<TodoDto>>().setData(todoService.getAllTasksByTask(task)).build();
     }
 
     @PostMapping
     public ResponseEntity<TodoDto> createTask(@RequestBody TodoRequest todoRequest) {
-        return Response.ok(todoService.createTask(todoRequest));
+        return new Response<TodoDto>().setData(todoService.createTask(todoRequest)).build();
     }
 
     @DeleteMapping
     public ResponseEntity<TodoDto> deleteTask(@RequestParam Long id) {
-        return Response.ok(todoService.removeTask(id));
+        return new Response<TodoDto>().setData(todoService.removeTask(id)).build();
     }
 
     @PutMapping
     public ResponseEntity<TodoDto> changeTaskStatus(@RequestParam Long id) {
-        return Response.ok(todoService.changeTaskStatus(id));
+        return new Response<TodoDto>().setData(todoService.changeTaskStatus(id)).build();
     }
 
     @GetMapping
-    public ResponseEntity<List<TodoDto>> getAllTasks() {
-        return Response.ok(todoService.getAllTasks());
+    public ResponseEntity getAllTasks() {
+        return new Response<List<TodoDto>>().setData(todoService.getAllTasks()).build();
     }
 }
